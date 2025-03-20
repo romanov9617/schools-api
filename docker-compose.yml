@@ -1,13 +1,13 @@
 services:
-  # api:
-  #   container_name: api
-  #   build: .
-  #   tty: true
-  #   depends_on:
-  #     postgres:
-  #      condition: service_healthy
-  #   ports:
-  #     - "8000:8000"
+  api:
+    container_name: api
+    build: .
+    tty: true
+    depends_on:
+      postgres:
+       condition: service_healthy
+    ports:
+      - "8000:8000"
 
 
   postgres:
