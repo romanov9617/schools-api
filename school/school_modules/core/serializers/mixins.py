@@ -1,5 +1,5 @@
-from rest_framework.exceptions import ValidationError
-from rest_framework.status import HTTP_500_INTERNAL_SERVER_ERROR
+from rest_framework.status import HTTP_400_BAD_REQUEST
+from school_modules.core.exceptions import FieldIsRequiredException
 
 
 class OneEntityMixin:
@@ -11,9 +11,9 @@ class OneEntityMixin:
     def to_internal_value(self, data):
         ser_field = self._get_serilizer_field()
         if ser_field not in data:
-            raise ValidationError(
-                {
-                    "status": HTTP_500_INTERNAL_SERVER_ERROR,
+            raise FieldIsRequiredException(
+                detail={
+                    "status": HTTP_400_BAD_REQUEST,
                     "reason": f"Field {ser_field} is required",
                 }
             )
