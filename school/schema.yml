@@ -1,0 +1,771 @@
+openapi: 3.0.3
+info:
+  title: Schools RESTful API
+  version: 1.0.0
+  description: RESTful API сервис, позволяющий управлять списком учителей/сотрудников,        школьников
+    и классов в рамках школ
+paths:
+  /api/classes/:
+    get:
+      operationId: classes_list
+      tags:
+      - classes
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Class'
+          description: ''
+    post:
+      operationId: classes_create
+      tags:
+      - classes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Class'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Class'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Class'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Class'
+          description: ''
+  /api/classes/{id}/:
+    get:
+      operationId: classes_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this class.
+        required: true
+      tags:
+      - classes
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Class'
+          description: ''
+    put:
+      operationId: classes_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this class.
+        required: true
+      tags:
+      - classes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Class'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Class'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Class'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Class'
+          description: ''
+    patch:
+      operationId: classes_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this class.
+        required: true
+      tags:
+      - classes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedClass'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedClass'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedClass'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Class'
+          description: ''
+    delete:
+      operationId: classes_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this class.
+        required: true
+      tags:
+      - classes
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/pupils/:
+    get:
+      operationId: pupils_list
+      tags:
+      - pupils
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PupilSerilizer'
+          description: ''
+    post:
+      operationId: pupils_create
+      tags:
+      - pupils
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PupilSerilizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PupilSerilizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PupilSerilizer'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PupilSerilizer'
+          description: ''
+  /api/pupils/{id}/:
+    get:
+      operationId: pupils_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this pupil.
+        required: true
+      tags:
+      - pupils
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PupilSerilizer'
+          description: ''
+    put:
+      operationId: pupils_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this pupil.
+        required: true
+      tags:
+      - pupils
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PupilSerilizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PupilSerilizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PupilSerilizer'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PupilSerilizer'
+          description: ''
+    patch:
+      operationId: pupils_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this pupil.
+        required: true
+      tags:
+      - pupils
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedPupilSerilizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedPupilSerilizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedPupilSerilizer'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PupilSerilizer'
+          description: ''
+    delete:
+      operationId: pupils_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this pupil.
+        required: true
+      tags:
+      - pupils
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/schools/:
+    get:
+      operationId: schools_list
+      tags:
+      - schools
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SchoolSerilaizer'
+          description: ''
+    post:
+      operationId: schools_create
+      tags:
+      - schools
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SchoolSerilaizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SchoolSerilaizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SchoolSerilaizer'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchoolSerilaizer'
+          description: ''
+  /api/schools/{id}/:
+    get:
+      operationId: schools_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this school.
+        required: true
+      tags:
+      - schools
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchoolSerilaizer'
+          description: ''
+    put:
+      operationId: schools_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this school.
+        required: true
+      tags:
+      - schools
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SchoolSerilaizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SchoolSerilaizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SchoolSerilaizer'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchoolSerilaizer'
+          description: ''
+    patch:
+      operationId: schools_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this school.
+        required: true
+      tags:
+      - schools
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedSchoolSerilaizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedSchoolSerilaizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedSchoolSerilaizer'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchoolSerilaizer'
+          description: ''
+    delete:
+      operationId: schools_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this school.
+        required: true
+      tags:
+      - schools
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/workers/:
+    get:
+      operationId: workers_list
+      tags:
+      - workers
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WorkerSerilizer'
+          description: ''
+    post:
+      operationId: workers_create
+      tags:
+      - workers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkerSerilizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/WorkerSerilizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/WorkerSerilizer'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkerSerilizer'
+          description: ''
+  /api/workers/{id}/:
+    get:
+      operationId: workers_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this worker.
+        required: true
+      tags:
+      - workers
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkerSerilizer'
+          description: ''
+    put:
+      operationId: workers_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this worker.
+        required: true
+      tags:
+      - workers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkerSerilizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/WorkerSerilizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/WorkerSerilizer'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkerSerilizer'
+          description: ''
+    patch:
+      operationId: workers_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this worker.
+        required: true
+      tags:
+      - workers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedWorkerSerilizer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedWorkerSerilizer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedWorkerSerilizer'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkerSerilizer'
+          description: ''
+    delete:
+      operationId: workers_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this worker.
+        required: true
+      tags:
+      - workers
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+components:
+  schemas:
+    Class:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        count:
+          type: integer
+          maximum: 30
+          minimum: 0
+        teacher:
+          type: integer
+      required:
+      - count
+      - id
+      - name
+      - teacher
+    PatchedClass:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        count:
+          type: integer
+          maximum: 30
+          minimum: 0
+        teacher:
+          type: integer
+    PatchedPupilSerilizer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        fio:
+          type: string
+          maxLength: 100
+        birth_date:
+          type: string
+          format: date
+        _class:
+          type: integer
+          title: ' class'
+    PatchedSchoolSerilaizer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 100
+        year:
+          type: integer
+          maximum: 2024
+          minimum: 1400
+        raiting:
+          type: integer
+          maximum: 10
+          minimum: 0
+        director:
+          type: integer
+    PatchedWorkerSerilizer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        fio:
+          type: string
+          maxLength: 100
+        birth_date:
+          type: string
+          format: date
+    PupilSerilizer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        fio:
+          type: string
+          maxLength: 100
+        birth_date:
+          type: string
+          format: date
+        _class:
+          type: integer
+          title: ' class'
+      required:
+      - _class
+      - birth_date
+      - fio
+      - id
+    SchoolSerilaizer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 100
+        year:
+          type: integer
+          maximum: 2024
+          minimum: 1400
+        raiting:
+          type: integer
+          maximum: 10
+          minimum: 0
+        director:
+          type: integer
+      required:
+      - director
+      - id
+      - raiting
+      - title
+      - year
+    WorkerSerilizer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        fio:
+          type: string
+          maxLength: 100
+        birth_date:
+          type: string
+          format: date
+      required:
+      - birth_date
+      - fio
+      - id
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid

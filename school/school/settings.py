@@ -27,7 +27,7 @@ config = configparser.ConfigParser()
 config.read(SERVER_CONFIG_PATH)
 
 
-REGULAR_API_PREFIX = "api/v1/"
+REGULAR_API_PREFIX = "api/"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -51,7 +51,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
-    "school_modules.school",
+    "drf_spectacular",
+    "school_modules.schools",
     "school_modules.classes",
     "school_modules.pupils",
     "school_modules.workers",
@@ -66,6 +67,18 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Schools RESTful API",
+    "DESCRIPTION": "RESTful API сервис, позволяющий управлять списком учителей/сотрудников,\
+        школьников и классов в рамках школ",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+}
 
 ROOT_URLCONF = "school.urls"
 
