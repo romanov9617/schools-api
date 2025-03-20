@@ -17,3 +17,4 @@ poetry install
 poetry run ./entrypoint.sh
 ```
 
+Документация со Swagger доступна [по ссылке]([url](https://romanov9617.github.io/schools-api/))
